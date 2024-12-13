@@ -34,6 +34,7 @@
             margin: 20px 0;
             padding-left: 20px;
             position: relative;
+            animation: fadeIn 1s ease-out;
         }
         .timeline-item:before {
             content: '';
@@ -62,6 +63,16 @@
             padding: 10px;
             font-size: 14px;
             color: #555;
+        }
+        @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
         }
     </style>
 </head>
@@ -137,6 +148,8 @@
                 <video src="VID-20241209-WA0003.mp4" controls></video>
                 <img src="IMG-20241211-WA0008.jpg" alt="" srcset="">
                 <video src="VID-20241211-WA0001.mp4" controls></video>
+                <img src="WhatsApp Image 2024-12-12 at 20.14.19_cc53a172.jpg" alt="" srcset="">
+                <img src="WhatsApp Image 2024-12-13 at 00.15.30_5bb0c3a1.jpg" alt="" srcset="">
 
 
             </div>
@@ -149,5 +162,28 @@
     <footer>
         <p>Dedicated to Aishna | Created with ❤️</p>
     </footer>
+        <script>
+        document.querySelectorAll('.timeline-item img, .timeline-item video').forEach(item => {
+            item.addEventListener('click', () => {
+                const viewer = document.createElement('div');
+                viewer.style.position = 'fixed';
+                viewer.style.top = '0';
+                viewer.style.left = '0';
+                viewer.style.width = '100%';
+                viewer.style.height = '100%';
+                viewer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                viewer.style.display = 'flex';
+                viewer.style.alignItems = 'center';
+                viewer.style.justifyContent = 'center';
+                viewer.style.zIndex = '1000';
+                const clone = item.cloneNode(true);
+                clone.style.maxWidth = '90%';
+                clone.style.maxHeight = '90%';
+                viewer.appendChild(clone);
+                viewer.addEventListener('click', () => viewer.remove());
+                document.body.appendChild(viewer);
+            });
+        });
+    </script>
 </body>
 </html>
